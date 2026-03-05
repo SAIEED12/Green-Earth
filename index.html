@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Green Earth</title>
+
+    <!-- Tailwind + DaisyUI -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet"type="text/css"/>
+    <link rel="stylesheet" href="./style.css">
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav>
+      <div class="navbar bg-[#15803D] shadow-sm">
+        <div class="navbar-start">
+          <div class="dropdown">
+            <div tabindex="0" role="button" class="btn btn-ghost lg:hidden">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-5 w-5"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M4 6h16M4 12h8m-8 6h16"
+                />
+              </svg>
+            </div>
+            <ul
+              tabindex="-1"
+              class="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
+            >
+              <li><a>About</a></li>
+              <li><a>Gallery</a></li>
+              <li><a>Plant a Tree</a></li>
+            </ul>
+          </div>
+          <a class="text-3xl text-[#FFFFFFFF] ml-35 font-bold">Green Earth</a>
+        </div>
+        <div class="navbar-center hidden lg:flex text-white">
+          <ul class="menu menu-horizontal px-1">
+            <li><a>About</a></li>
+            <li><a>Gallery</a></li>
+            <li><a>Plant a Tree</a></li>
+          </ul>
+        </div>
+        <div class="navbar-end">
+          <a class="btn bg-[#FACC15] rounded-full text-[#15803D]"
+            >Plant a Tree</a
+          >
+        </div>
+      </div>
+    </nav>
+
+    <main class="mx-auto w-11/12">
+      <h2 class="text-[#4ade80] font-bold text-center text-3xl mt-10">Choose Your Trees</h2>
+      <div class="grid grid-cols-12 gap-8">
+        <!-- Catrgories -->
+        <div class="bg-white card card-body shadow-2xl col-span-3">
+          <h2 class="font-bold text-2xl">Categories</h2>
+          <div>
+            <button class="btn btn-success w-full" id="allTreesbtn">
+              All trees
+            </button>
+          </div>
+
+          <!-- Categories Container -->
+          <div id="categoriesContainer" class="space-y-3"></div>
+        </div>
+
+        <!-- Trees -->
+        <div class="bg-white card card-body shadow-2xl col-span-6">
+
+            <!-- Tree Container Display all trees -->
+          <div id="treesContainer" class="grid grid-cols-1 sm:grid grid-cols-3 gap-6">
+            
+            <!-- Dynamic -->
+             <!-- <div class="card bg-white shadow-sm">
+              <figure>
+                <img
+                  src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
+                  alt="Shoes"
+                />
+              </figure>
+              <div class="card-body">
+                <h2 class="card-title">Card Title</h2>
+                <p class="line-clamp-2">
+                  A card component has a figure, a body part, and inside body
+                  there are title and actions parts
+                </p>
+                <div class="badge badge-success badge-outline">Success</div>
+                <div class="flex justify-between items-center">
+                    <h2 class="text-xl font-bold">$500</h2>
+                  <button class="btn btn-primary">Buy Now</button>
+                </div>
+              </div>
+            </div> -->
+          
+        </div>
+
+        <!-- Loading Spinner -->
+         <div id="loadingSpinner" class="h-[60vh] hidden flex justify-center items-center">
+            <span class="loading loading-ring loading-xs"></span>
+            <span class="loading loading-ring loading-sm"></span>
+            <span class="loading loading-ring loading-md"></span>
+            <span class="loading loading-ring loading-lg"></span>
+            <span class="loading loading-ring loading-xl"></span>
+         </div>
+        </div>
+
+        <!-- Cart -->
+        <div class="bg-white card card-body shadow-2xl col-span-3">Cart</div>
+      </div>
+    </main>
+
+    <script src="./script/script.js"></script>
+  </body>
+</html>

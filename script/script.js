@@ -1,6 +1,13 @@
 const categoriesContainer = document.getElementById("categoriesContainer")
 const treesContainer = document.getElementById("treesContainer")
 const loadingSpinner = document.getElementById("loadingSpinner")
+const allTreesbtn = document.getElementById("allTreesbtn")
+const treeDetailsModal = document.getElementById("tree-details-modal");
+const modalImage = document.getElementById("modalImage")
+const modalCategory = document.getElementById("modalCategory")
+const modalDescription = document.getElementById("modalDescription")
+const modalPrice= document.getElementById("modalPrice")
+const modalTitle = document.getElementById("modalTitle")
 
 function showLoading() {
     loadingSpinner.classList.remove("hidden");
@@ -22,9 +29,41 @@ async function loadCategories() {
         const btn = document.createElement("button")
         btn.className = "btn btn-outline w-full"
         btn.textContent = category.category_name
+        btn.onclick = () => selectCategory(category.id,btn);
         categoriesContainer.appendChild(btn);
     });
 } 
+
+async function selectCategory(categoryId,btn) {
+  showLoading();
+
+  const allButtons = document.querySelectorAll("#categoriesContainer button, #allTreesbtn")
+  allButtons.forEach(btn => {
+    btn.classList.remove("btn-primary");
+    btn.classList.add("btn-outline");
+  })
+
+  btn.classList.add("btn-primary");
+  btn.classList.remove("btn-outline");
+
+  const res = await fetch(`https://openapi.programming-hero.com/api/category/${categoryId}`)
+  const data = await res.json();
+  displayTrees(data.plants);
+  hideLoading();
+}
+
+allTreesbtn.addEventListener("click",()=>{
+  const allButtons = document.querySelectorAll("#categoriesContainer button, #allTreesbtn")
+  allButtons.forEach(btn => {
+  btn.classList.remove("btn-primary");
+  btn.classList.add("btn-outline");
+})
+
+  allTreesbtn.classList.add("btn-primary");
+  allTreesbtn.classList.remove("btn-outline");
+  
+  loadTrees();
+})
 
 async function loadTrees() {
     showLoading();
@@ -49,11 +88,12 @@ function displayTrees(trees) {
                   src="${tree.image}"
                   alt="${tree.name}"
                   title="${tree.name}"
-                  class="h-48 w-full object-cover"
+                  class="h-48 w-full object-cover cursor-pointer"
+                  onclick="openTreeModal(${tree.id})"
                 />
               </figure>
               <div class="card-body">
-                <h2 class="card-title">${tree.name}</h2>
+                <h2 class="card-title cursor-pointer hover:text-[#4ade80]" onclick="openTreeModal(${tree.id})">${tree.name}</h2>
                 <p class="line-clamp-2">
                   A card component has a figure, a body part, and inside body
                   there are title and actions parts
@@ -68,6 +108,18 @@ function displayTrees(trees) {
         `;
         treesContainer.append(card);
     })
+}
+
+async function openTreeModal(treeId) {
+  const res = await fetch(`https://openapi.programming-hero.com/api/plant/${treeId}`)
+  const data = await res.json()
+  const plantDetails = data.plants;
+  modalTitle.textContent = plantDetails.name
+  modalImage.src = plantDetails.image
+  modalCategory.textContent = plantDetails.category
+  modalPrice.textContent = plantDetails.price
+  modalDescription.textContent = plantDetails.description
+  treeDetailsModal.showModal();
 }
 
 loadCategories();

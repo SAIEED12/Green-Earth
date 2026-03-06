@@ -93,7 +93,7 @@ function displayTrees(trees) {
     console.log(tree);
 
     const card = document.createElement("div");
-    card.className = "card bg-white shadow-sm";
+    card.className = `card bg-white shadow-sm border-b-2 ${tree.price > 500 ? "border-red-500" : "border-green-500"}`;
     card.innerHTML = `
         <div class="card bg-white shadow-sm">
               <figure>

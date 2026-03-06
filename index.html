@@ -124,50 +124,90 @@
         </div>
 
         <!-- Cart -->
-        <div class="bg-white card card-body shadow-2xl col-span-3">Cart</div>
+        <div class="bg-white card card-body shadow-2xl col-span-3">
+          <h2 class="font-bold text-3xl mb-2">Cart</h2>
+          <div class="space-y-4">
+            <div id="cartContainer" class="space-y-4">
+              <!-- <div class="card card-body bg-slate-100">
+                <div class="flex justify-between items-center">
+                  <div>
+                    <h2>Name</h2>
+                    <p>$2000 x 10</p>
+                  </div>
+                  <button class="btn btn-ghost">X</button>
+                </div>
+                <p class="text-right font-semibold text-xl">$500</p>
+              </div> -->
+            </div>
+
+            <div id="emtyCartMessage" class="text-center py-4">
+              <p>Your cart is empty</p>
+              <p>Add some trees to your cart!</p>
+            </div>
+
+            <!-- Total Amount -->
+            <div
+              class="flex justify-between items-center bg-green-50 rounded-lg p-4 my-3 font-bold"
+            >
+              <span>Total:</span>
+              <span id="total-price">$0</span>
+            </div>
+          </div>
+        </div>
       </div>
 
-      <!-- Prodduct Details Modal -->
+      <!-- Product Details Modal -->
       <!-- Open the modal using ID.showModal() method -->
-<dialog id="tree-details-modal" class="modal">
-            <div class="modal-box">
+      <dialog id="tree-details-modal" class="modal">
+        <div class="modal-box">
+          <!-- Modal Header with Close Button -->
+          <div class="flex justify-between items-start mb-4">
+            <h3 class="font-bold text-2xl text-green-700" id="modalTitle">
+              Tree Details
+            </h3>
+            <button
+              class="btn btn-sm btn-circle btn-ghost"
+              onclick="document.getElementById('tree-details-modal').close()"
+            >
+              ✕
+            </button>
+          </div>
 
-                <!-- Modal Header with Close Button -->
-                <div class="flex justify-between items-start mb-4">
-                    <h3 class="font-bold text-2xl text-green-700" id="modalTitle">Tree Details</h3>
-                    <button class="btn btn-sm btn-circle btn-ghost"
-                        onclick="document.getElementById('tree-details-modal').close()">✕</button>
-                </div>
+          <!-- Modal Content -->
+          <div class="gap-6">
+            <!-- Plant Image -->
+            <img
+              id="modalImage"
+              src=""
+              alt="plant"
+              class="w-full !h-[250px] object-cover rounded-lg mb-12"
+            />
 
-                <!-- Modal Content -->
-                <div class=" gap-6">
-                    <!-- Plant Image -->
-                    <img id="modalImage" src="" alt="plant" class="w-full !h-[250px] object-cover rounded-lg mb-12">
-
-                    <!-- Plant Details -->
-                    <div class="">
-                        <p class="text-sm text-gray-500 mb-2">
-                            <span class="font-bold">Category:</span>
-                            <span id="modalCategory" class="badge badge-primary"></span>
-                        </p>
-                        <p class="text-sm text-gray-600 mb-4">
-                            <span id="modalDescription"></span>
-                        </p>
-                        <div class="flex items-baseline gap-2 mb-6">
-                            <span class="text-3xl font-bold text-green-600">$<span id="modalPrice">0</span></span>
-                        </div>
-                    </div>
-                </div>
-
-
-                <div class="modal-action">
-                    <form method="dialog">
-                        <!-- if there is a button in form, it will close the modal -->
-                        <button class="btn">Close</button>
-                    </form>
-                </div>
+            <!-- Plant Details -->
+            <div class="">
+              <p class="text-sm text-gray-500 mb-2">
+                <span class="font-bold">Category:</span>
+                <span id="modalCategory" class="badge badge-primary"></span>
+              </p>
+              <p class="text-sm text-gray-600 mb-4">
+                <span id="modalDescription"></span>
+              </p>
+              <div class="flex items-baseline gap-2 mb-6">
+                <span class="text-3xl font-bold text-green-600"
+                  >$<span id="modalPrice">0</span></span
+                >
+              </div>
             </div>
-        </dialog>
+          </div>
+
+          <div class="modal-action">
+            <form method="dialog">
+              <!-- if there is a button in form, it will close the modal -->
+              <button class="btn">Close</button>
+            </form>
+          </div>
+        </div>
+      </dialog>
     </main>
 
     <script src="./script/script.js"></script>
